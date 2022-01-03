@@ -60,3 +60,20 @@ Sentences are in the original order for each restaurants (business).
 cleaning 
 ## Generating Experiment Plots
 cleaning
+
+# Citation
+```
+@inproceedings{hsu-tan-2021-decision,
+    title = "Decision-Focused Summarization",
+    author = "Hsu, Chao-Chun  and
+      Tan, Chenhao",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.10",
+    doi = "10.18653/v1/2021.emnlp-main.10",
+    pages = "117--132",
+}
+```
