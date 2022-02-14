@@ -1,0 +1,6 @@
+Preprocessing Instructions:
+- In base directory, create data folder
+- Inside data folder, create folder named "out"
+- Unzip data from https://www.yelp.com/dataset/download into a folder called "yelp" inside the data folder
+- rename files accordingly to business.json, review.json, (no need to rename the checking file)
+- run python -m preprocess.yelp_preprocess in base directory

@@ -51,11 +51,11 @@ if __name__ == "__main__":
 
     # Required parameters
     parser.add_argument("--yelp_data_dir",
-                        default="/data/yelp",
+                        default="data/yelp",
                         type=str,
                         help="")
     parser.add_argument("--output_dir",
-                        default="/data/joe/yelp",
+                        default="data/out/",
                         type=str,
                         help="")
     parser.add_argument("--data_split",
