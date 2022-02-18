@@ -25,7 +25,7 @@ def get_created_time(text):
 
 
 def convert_data(input_file, output_file):
-    with open(input_file) as fin, gzip.open(output_file, "wt", encoding='utf-8') as fout:
+    with open(input_file, encoding='utf-8') as fin, gzip.open(output_file, "wt", encoding='utf-8') as fout:
         business_dict = {}
         count = 0
         for line in fin:
