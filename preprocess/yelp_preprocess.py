@@ -8,7 +8,7 @@ import json
 import pprint
 import argparse
 import os
-from datettime import datetime
+from datetime import datetime
 import logging
 import pandas as pd
 
