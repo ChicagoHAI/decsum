@@ -10,7 +10,7 @@ import os
 import pprint
 from datetime import datetime
 
-import pandas as pd
+from sklearn.model_selection import train_test_split
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 logging.info('Admin logged in')
@@ -117,16 +117,24 @@ if __name__ == "__main__":
                 for o in obj:
                     fout.write("%s\n" % json.dumps(o))
         
-        splits = ["train", "dev", "test"]
-        split_ids = {}
-        for s in splits:
-            split_ids[s] = set(pd.read_csv(f"preprocess/{s}_business_ids.csv").business.values)
-        
         reviews = []
         with gzip.open(out_file, 'rt', encoding='utf-8') as f:
             for line in f:
                 reviews.append(json.loads(line))
-            
+
+        review_id = []
+        for review in reviews:
+            review_id.append(review['business'])
+
+        train, test = train_test_split(review_id, test_size=0.2, random_state=517)
+        train, dev = train_test_split(train, test_size=0.2, random_state=517)
+
+        splits = ["train", "dev", "test"]
+        split_ids = {}
+        split_ids["train"] = set(train)
+        split_ids["test"] = set(test)
+        split_ids["dev"] = set(dev)
+
         for split, ids in split_ids.items():
             split_reviews = []
             for review in reviews:
