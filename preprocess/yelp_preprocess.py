@@ -2,14 +2,14 @@
 Data can be downloaded from https://www.yelp.com/dataset/download
 """
 
-import argparse
+import pickle
 import gzip
 import json
-import logging
-import os
 import pprint
+import argparse
+import os
 from datetime import datetime
-
+import logging
 import pandas as pd
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
@@ -21,12 +21,11 @@ DATE_PATTERN = "%Y-%m-%d %H:%M:%S"
 
 
 def get_created_time(text):
-    return int(datetime.strptime(text, DATE_PATTERN).strftime("%s"))
+    return int(datetime.strptime(text, DATE_PATTERN).strftime("%S"))
 
 
 def convert_data(input_file, output_file):
-    with open(input_file, encoding='utf-8') as fin, gzip.open(output_file, "wt",
-                                                              encoding='utf-8') as fout:
+    with open(input_file) as fin, gzip.open(output_file, "wt") as fout:
         business_dict = {}
         count = 0
         for line in fin:
@@ -72,7 +71,7 @@ if __name__ == "__main__":
     logging.info(f"args: {args}")   
 
     restaurant_business_ids = set()
-    with open(os.path.join(args.yelp_data_dir, "business.json"), "r", encoding='utf-8') as f:
+    with open(os.path.join(args.yelp_data_dir, "business.json"), "r") as f:    
         for line in f:  
             if line:    
                 json_content = json.loads(line)
@@ -91,8 +90,7 @@ if __name__ == "__main__":
 
     logging.info(f"converting grouped reviews into resutaurant only reviews and compute average of first {args.num_review} reviews")
     out_file = os.path.join(args.output_dir, f"yelp_10reviews_{args.num_review}avg.jsonl.gz")
-    with gzip.open(grouped_reviews_filepath, 'rt', encoding='utf-8') as f_in,  gzip.open(
-            out_file, "wt", encoding='utf-8') as fout:
+    with gzip.open(grouped_reviews_filepath, 'rt') as f_in,  gzip.open(out_file, "wt") as fout:
         for l in f_in:
             r = json.loads(l)
             if r['business'] not in restaurant_business_ids:
