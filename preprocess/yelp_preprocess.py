@@ -8,7 +8,7 @@ import json
 import pprint
 import argparse
 import os
-import datetime
+from datettime import datetime
 import logging
 import pandas as pd
 
@@ -21,7 +21,7 @@ DATE_PATTERN = "%Y-%m-%d %H:%M:%S"
 
 
 def get_created_time(text):
-    return int(datetime.strptime(text, DATE_PATTERN).strftime("%s"))
+    return int(datetime.strptime(text, DATE_PATTERN).strftime("%S"))
 
 
 def convert_data(input_file, output_file):
