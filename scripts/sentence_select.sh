@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
 
-OUTPUT_DIR=/data/joe/test_decsum/
-MODEL_PATH=${OUTPUT_DIR}/transformers/version_27-12-2021--16-59-15/checkpoints/epoch=1-val_loss=0.12.ckpt
+OUTPUT_DIR=data/test_decsum
+MODEL_PATH=${OUTPUT_DIR}/version_16-02-2022--18-59-02/checkpoints/epoch=2-val_loss=0.40.ckpt
 RES_DIR=${OUTPUT_DIR}/models/sentence_select/
 
 # DecSum
