@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     test_predicted = pipeline.predict(test)
     test['predicted'] = test_predicted
-    test.to_csv('test_with_predicted.csv')
+    test.to_csv('ridge_prediction.csv')
     print ("MSE on Test Set:")
     print(mean_squared_error(test['avg_score'], test_predicted))
     test_score = mean_squared_error(test['avg_score'], test_predicted)
