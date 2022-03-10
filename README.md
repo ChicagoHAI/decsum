@@ -26,9 +26,10 @@ Then, run scrip at the base directory.
 ```
 python -m preprocess.yelp_preprocess [--yelp_data_dir YELP_DATA_DIR] [--output_dir OUTPUT_DIR]
 ```
+We have included a `data` folder with pre-preprocessed `train/dev/test`(64%/16%/20%) json datasets from the latest Yelp Data.
 
 ## Model Comparison
-The details for model comparison between Longformer and Logistic (Ridge) Regression are in `model_comparison.py` file under `models/model_comparison` with sample test results.
+Run `model_comparison.py` file under `models/model_comparison` for details of model comparison between Longformer and Ridge Regression.
 
 ## Train Longformer model
 >Remeber to change env variables in `scripts/train_transformer.sh` before running the training script. It takes about three hours to train longformer on RTX3090 with half precision.
