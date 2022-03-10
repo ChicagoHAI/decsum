@@ -11,13 +11,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from sklearn.metrics import mean_squared_error
 
 test = pd.read_csv('ridge_prediction.csv')
+test = test[test.business != "#NAME?"]
 longformer_pred = pd.read_csv('longformer_prediction.csv')
+longformer_pred = longformer_pred[longformer_pred.business != "#NAME?"]
 
 combined = pd.merge(test, longformer_pred, on="business", how="inner")
 combined['first_10_avg'] = combined['scores'].apply(lambda x: np.mean(ast.literal_eval(x)))
 
+print(f'Longformer MSE: {mean_squared_error(combined.pred, combined.avg_score)}')
+print(f'Ridge Regression MSE: {mean_squared_error(combined.predicted, combined.avg_score)}')
 def group(x):
     if x < 1.5:
         return 0
