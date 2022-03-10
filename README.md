@@ -28,8 +28,8 @@ python -m preprocess.yelp_preprocess [--yelp_data_dir YELP_DATA_DIR] [--output_d
 ```
 We have included a `data` folder with pre-preprocessed `train/dev/test`(64%/16%/20%) json datasets from the latest Yelp Data.
 
-## Model Comparison
-Run `model_comparison.py` file under `models/model_comparison` for details of model comparison between Longformer and Ridge Regression.
+## Train Ridge model
+Run `logistic_regression_text.py` to train the ridge regression. By default, the script is using data provided under `data/out/50reviews`. The details of the fitted model will be saved under `results` directory after the script is executed.
 
 ## Train Longformer model
 >Remeber to change env variables in `scripts/train_transformer.sh` before running the training script. It takes about three hours to train longformer on RTX3090 with half precision.
@@ -38,6 +38,9 @@ bash scripts/train_transformer.sh
 ```
 You can check training log here `${OUTPUT_DIR}/logs/` with `tensorboard`.
 Trained model will be saved to path like this `${OUTPUT_DIR}/version_27-12-2021--16-59-15/checkpoints/epoch=1-val_loss=0.12.ckpt`.
+
+## Model Comparison
+Run `model_comparison.py` file under `models/model_comparison` for details of model comparison between Longformer and Ridge Regression.
 
 ## Run DecSum
 > Change env variables in `scripts/sentence_select.sh`  before running DecSum. This step takes about 10 hours on RTX3090.
